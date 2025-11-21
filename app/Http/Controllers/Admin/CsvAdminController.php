@@ -70,6 +70,13 @@ class CsvAdminController extends Controller
         return view('admin.csv.data', compact('csvData'));
     }
 
+    public function markCompleted(CsvUpload $csvUpload)
+    {
+        $csvUpload->update(['status' => 'completed']);
+
+        return redirect()->back()->with('success', 'File marked as completed successfully.');
+    }
+
     public function destroy(CsvUpload $csvUpload)
     {
         $csvUpload->delete();

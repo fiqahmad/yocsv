@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/csv', [CsvAdminController::class, 'index'])->name('csv.index');
         Route::get('/csv/{csvUpload}', [CsvAdminController::class, 'show'])->name('csv.show');
         Route::post('/csv/{csvUpload}/reprocess', [CsvAdminController::class, 'reprocess'])->name('csv.reprocess');
+        Route::post('/csv/{csvUpload}/mark-completed', [CsvAdminController::class, 'markCompleted'])->name('csv.markCompleted');
         Route::delete('/csv/{csvUpload}', [CsvAdminController::class, 'destroy'])->name('csv.destroy');
         Route::get('/csv-data', [CsvAdminController::class, 'data'])->name('csv.data');
     });

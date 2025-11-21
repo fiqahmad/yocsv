@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
         <div class="container">
             <a href="{{ url('/') }}" class="navbar-brand me-lg-5">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="logo-dark" height="18" />
+                <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" class="logo-dark" height="40" />
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"

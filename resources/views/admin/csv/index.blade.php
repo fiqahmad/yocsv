@@ -205,6 +205,14 @@
                                                 <a class="dropdown-item" href="{{ route('admin.csv.show', $upload) }}">
                                                     <i class="mdi mdi-eye me-2"></i>View Details
                                                 </a>
+                                                @if(in_array($upload->status, ['pending', 'processing']))
+                                                    <form action="{{ route('admin.csv.markCompleted', $upload) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item text-success">
+                                                            <i class="mdi mdi-check-circle me-2"></i>Mark as Completed
+                                                        </button>
+                                                    </form>
+                                                @endif
                                                 @if(in_array($upload->status, ['failed', 'completed_with_errors']))
                                                     <form action="{{ route('admin.csv.reprocess', $upload) }}" method="POST">
                                                         @csrf
