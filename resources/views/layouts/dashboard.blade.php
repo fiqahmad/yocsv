@@ -46,6 +46,24 @@
                         </a>
                     </li>
 
+                    <li class="side-nav-title side-nav-item">Admin</li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('admin.csv.index') }}" class="side-nav-link {{ request()->routeIs('admin.csv.*') ? 'active' : '' }}">
+                            <i class="uil-dashboard"></i>
+                            <span> Processing Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('admin.csv.data') }}" class="side-nav-link {{ request()->routeIs('admin.csv.data') ? 'active' : '' }}">
+                            <i class="uil-database"></i>
+                            <span> CSV Data Records </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-title side-nav-item">Account</li>
+
                     <li class="side-nav-item">
                         <a href="{{ route('profile.edit') }}" class="side-nav-link">
                             <i class="uil-user"></i>
