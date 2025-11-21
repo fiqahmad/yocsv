@@ -19,19 +19,19 @@
         <div class="leftside-menu">
             <a href="{{ url('/') }}" class="logo text-center logo-light">
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="30">
+                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="40">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="30">
+                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="35">
                 </span>
             </a>
 
             <a href="{{ url('/') }}" class="logo text-center logo-dark">
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="30">
+                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="40">
                 </span>
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="30">
+                    <img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="35">
                 </span>
             </a>
 
