@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessCsvFile;
 use App\Models\CsvUpload;
 use Illuminate\Http\Request;
 
@@ -37,14 +38,16 @@ class CsvUploadController extends Controller
 
             $file->storeAs('csv_uploads', $fileName, 'public');
 
-            CsvUpload::create([
+            $csvUpload = CsvUpload::create([
                 'file_name' => $fileName,
                 'status' => 'pending',
             ]);
 
-            return redirect()->route('csv.index')->with('success', 'CSV file uploaded successfully!');
+            ProcessCsvFile::dispatch($csvUpload);
+
+            return redirect()->route('csv.index')->with('success', 'CSV file uploaded successfully! Processing in background...');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage())->withInput();
+            return redirect()->route('csv.index')->with('error', 'Error uploading file: ' . $e->getMessage())->withInput();
         }
     }
 

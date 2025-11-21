@@ -12,6 +12,46 @@
     </div>
 </div>
 
+<!-- Upload Form -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-alert-circle-outline me-2"></i>{{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                <form action="{{ route('csv.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+                    @csrf
+                    <div class="col-md-8">
+                        <label for="csv_file" class="form-label fw-bold">Upload CSV File</label>
+                        <input type="file" class="form-control @error('csv_file') is-invalid @enderror" name="csv_file" id="csv_file" accept=".csv,.txt" required>
+                        @error('csv_file')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <small class="text-muted">Maximum 10MB. Formats: .csv, .txt | Idempotent uploads using UNIQUE_KEY</small>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="mdi mdi-upload me-1"></i> Upload & Process
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <div class="alert alert-info mb-0" role="alert">
+                            <strong><i class="mdi mdi-information-outline"></i> Required Columns:</strong>
+                            UNIQUE_KEY, PRODUCT_TITLE, PRODUCT_DESCRIPTION, STYLE#, SANMAR_MAINFRAME_COLOR, SIZE, COLOR_NAME, PIECE_PRICE
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- File List -->
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -19,11 +59,7 @@
 
                 <!-- Left Sidebar -->
                 <div class="page-aside-left">
-                    <a href="{{ route('csv.create') }}" class="btn btn-success w-100 mb-3">
-                        <i class="mdi mdi-plus"></i> Upload CSV File
-                    </a>
-
-                    <div class="email-menu-list mt-3">
+                    <div class="email-menu-list">
                         <a href="{{ route('csv.index') }}" class="list-group-item border-0">
                             <i class="mdi mdi-file-document-multiple font-18 align-middle me-2"></i>All Files
                         </a>
@@ -83,8 +119,15 @@
                                                 <td>
                                                     @if($upload->status === 'pending')
                                                         <span class="badge bg-warning text-dark">Pending</span>
+                                                    @elseif($upload->status === 'processing')
+                                                        <span class="badge bg-info">Processing...</span>
                                                     @elseif($upload->status === 'completed')
                                                         <span class="badge bg-success">Completed</span>
+                                                        @if($upload->total_rows)
+                                                            <br><small class="text-muted">{{ $upload->inserted_rows }} inserted, {{ $upload->updated_rows }} updated</small>
+                                                        @endif
+                                                    @elseif($upload->status === 'completed_with_errors')
+                                                        <span class="badge bg-warning">Completed ({{ $upload->error_rows }} errors)</span>
                                                     @else
                                                         <span class="badge bg-danger">Failed</span>
                                                     @endif
@@ -122,10 +165,7 @@
                         <div class="text-center py-5">
                             <i class="mdi mdi-file-document-outline" style="font-size: 4rem; color: #cbd5e0;"></i>
                             <h5 class="mt-3 text-muted">No CSV files uploaded yet</h5>
-                            <p class="text-muted">Upload your first CSV file to get started</p>
-                            <a href="{{ route('csv.create') }}" class="btn btn-primary mt-3">
-                                <i class="mdi mdi-upload me-1"></i> Upload CSV File
-                            </a>
+                            <p class="text-muted">Use the upload form above to get started</p>
                         </div>
                     @endif
 
