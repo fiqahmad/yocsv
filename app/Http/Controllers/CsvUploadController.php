@@ -28,20 +28,24 @@ class CsvUploadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'csv_file' => 'required|file|mimes:csv,txt|max:10240',
+            'csv_file' => 'required|file|mimetypes:text/plain,text/csv,application/csv,text/comma-separated-values,application/vnd.ms-excel|max:10240',
         ]);
 
-        $file = $request->file('csv_file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
+        try {
+            $file = $request->file('csv_file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
 
-        $file->storeAs('csv_uploads', $fileName, 'public');
+            $file->storeAs('csv_uploads', $fileName, 'public');
 
-        CsvUpload::create([
-            'file_name' => $fileName,
-            'status' => 'pending',
-        ]);
+            CsvUpload::create([
+                'file_name' => $fileName,
+                'status' => 'pending',
+            ]);
 
-        return redirect()->route('csv.index')->with('success', 'CSV file uploaded successfully!');
+            return redirect()->route('csv.index')->with('success', 'CSV file uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error uploading file: ' . $e->getMessage())->withInput();
+        }
     }
 
     public function destroy(CsvUpload $csvUpload)

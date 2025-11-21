@@ -21,6 +21,13 @@
     <div class="col-lg-8 offset-lg-2">
         <div class="card">
             <div class="card-body">
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="mdi mdi-alert-circle-outline me-2"></i>{{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <form action="{{ route('csv.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
