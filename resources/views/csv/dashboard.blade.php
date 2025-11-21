@@ -24,25 +24,41 @@
                     </div>
                 @endif
 
-                <form action="{{ route('csv.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+                <form action="{{ route('csv.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="col-md-8">
-                        <label for="csv_file" class="form-label fw-bold">Upload CSV File</label>
-                        <input type="file" class="form-control @error('csv_file') is-invalid @enderror" name="csv_file" id="csv_file" accept=".csv,.txt" required>
-                        @error('csv_file')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        <small class="text-muted">Maximum 10MB. Formats: .csv, .txt | Idempotent uploads using UNIQUE_KEY</small>
+                    <div class="row g-2 align-items-end">
+                        <div class="col-lg-8 col-md-7 col-sm-7">
+                            <label for="csv_file" class="form-label fw-semibold mb-2">
+                                <i class="mdi mdi-file-upload-outline me-1"></i> Select CSV File
+                            </label>
+                            <input type="file" class="form-control @error('csv_file') is-invalid @enderror" name="csv_file" id="csv_file" accept=".csv,.txt" required>
+                            @error('csv_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="form-text text-muted">
+                                <i class="mdi mdi-information-outline"></i> Max 10MB • CSV/TXT format • Idempotent uploads via UNIQUE_KEY
+                            </small>
+                        </div>
+                        <div class="col-lg-4 col-md-5 col-sm-5 mb-3">
+                            <button type="submit" class="btn btn-success shadow-sm w-100 d-flex align-items-center justify-content-center" style="height: 38px;">
+                                <i class="mdi mdi-cloud-upload me-2"></i>
+                                <span>Upload File</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-4 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="mdi mdi-upload me-1"></i> Upload & Process
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <div class="alert alert-info mb-0" role="alert">
-                            <strong><i class="mdi mdi-information-outline"></i> Required Columns:</strong>
-                            UNIQUE_KEY, PRODUCT_TITLE, PRODUCT_DESCRIPTION, STYLE#, SANMAR_MAINFRAME_COLOR, SIZE, COLOR_NAME, PIECE_PRICE
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="alert alert-light border mb-0" role="alert">
+                                <div class="d-flex align-items-start">
+                                    <i class="mdi mdi-table-column text-primary font-20 me-2"></i>
+                                    <div>
+                                        <strong class="text-dark">Required CSV Columns:</strong>
+                                        <div class="text-muted small mt-1">
+                                            UNIQUE_KEY • PRODUCT_TITLE • PRODUCT_DESCRIPTION • STYLE# • SANMAR_MAINFRAME_COLOR • SIZE • COLOR_NAME • PIECE_PRICE
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
