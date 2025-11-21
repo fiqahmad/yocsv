@@ -23,8 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/csv', [CsvUploadController::class, 'store'])->name('csv.store');
     Route::delete('/csv/{csvUpload}', [CsvUploadController::class, 'destroy'])->name('csv.destroy');
 
-    // Admin Routes
-    Route::prefix('admin')->name('admin.')->group(function () {
+    // Admin Routes - Only accessible by administrators
+    Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         Route::get('/csv', [CsvAdminController::class, 'index'])->name('csv.index');
         Route::get('/csv/{csvUpload}', [CsvAdminController::class, 'show'])->name('csv.show');
         Route::post('/csv/{csvUpload}/reprocess', [CsvAdminController::class, 'reprocess'])->name('csv.reprocess');
