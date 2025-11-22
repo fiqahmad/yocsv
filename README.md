@@ -10,15 +10,15 @@ A Laravel-based CSV file upload and management system with background processing
 ## 📸 Screenshots
 
 ### User Dashboard
-![User Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
+![User Dashboard](./public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
 *CSV file upload interface with status tracking and file management*
 
 ### Admin Dashboard
-![Admin Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
+![Admin Dashboard](./public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
 *Comprehensive admin dashboard with processing statistics and queue management*
 
 ### Login Page
-![Login Page](public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
+![Login Page](./public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
 *Clean authentication interface with YoPrint branding and gradient header*
 
 ---
@@ -557,7 +557,7 @@ Deletes the upload record and associated file.
 ## 📸 Screenshots
 
 ### User Dashboard - CSV File Management
-![User Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
+![User Dashboard](./public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
 
 The user dashboard provides a clean interface for CSV file upload and management:
 - **Upload Form**: Integrated file upload with choose file button
@@ -567,7 +567,7 @@ The user dashboard provides a clean interface for CSV file upload and management
 - **Statistics**: Shows total rows, inserted rows, updated rows, and error counts
 
 ### Admin Dashboard - Processing Queue
-![Admin Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
+![Admin Dashboard](./public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
 
 The admin dashboard offers comprehensive monitoring and control:
 - **Statistics Cards**: 6 metric cards showing total uploads, pending, processing, completed, failed, and total CSV records
@@ -578,7 +578,7 @@ The admin dashboard offers comprehensive monitoring and control:
 - **Status Badges**: Color-coded status indicators (yellow for pending, blue for processing, green for completed, red for failed)
 
 ### Login Page - Authentication
-![Login Page](public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
+![Login Page](./public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
 
 Clean and modern authentication interface:
 - **Gradient Header**: Purple gradient background with YoPrint logo
