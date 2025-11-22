@@ -9,8 +9,12 @@ A Laravel-based CSV file upload and management system with background processing
 
 ## 📸 Screenshots
 
-### User Dashboard
+### Landing Page
 ![User Dashboard](./public/assets/images/img1.png)
+*CSV file upload interface with status tracking and file management*
+
+### User Dashboard
+![User Dashboard](./public/assets/images/img4.png)
 *CSV file upload interface with status tracking and file management*
 
 ### Admin Dashboard
