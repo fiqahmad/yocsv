@@ -7,6 +7,22 @@ A Laravel-based CSV file upload and management system with background processing
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
+## 📸 Screenshots
+
+### User Dashboard
+![User Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
+*CSV file upload interface with status tracking and file management*
+
+### Admin Dashboard
+![Admin Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
+*Comprehensive admin dashboard with processing statistics and queue management*
+
+### Login Page
+![Login Page](public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
+*Clean authentication interface with YoPrint branding and gradient header*
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
@@ -540,20 +556,43 @@ Deletes the upload record and associated file.
 
 ## 📸 Screenshots
 
-### Landing Page
-The landing page features a hero section with YoPrint branding and call-to-action buttons.
+### User Dashboard - CSV File Management
+![User Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.24%20PM.png)
 
-### Login Page
-Clean, centered card design with gradient header displaying the YoPrint logo.
+The user dashboard provides a clean interface for CSV file upload and management:
+- **Upload Form**: Integrated file upload with choose file button
+- **Status Filters**: Quick filter buttons for All, Pending, Processing, Completed, Failed
+- **File Table**: Displays file name, status badges, upload date, and processing statistics
+- **Actions**: Download and delete icons for each file
+- **Statistics**: Shows total rows, inserted rows, updated rows, and error counts
 
-### User Dashboard
-File manager interface with upload form, status filters, and file listing table.
+### Admin Dashboard - Processing Queue
+![Admin Dashboard](public/assets/images/Screenshot%202025-11-22%20at%202.31.33%20PM.png)
 
-### Admin Dashboard
-Comprehensive statistics cards and processing queue management.
+The admin dashboard offers comprehensive monitoring and control:
+- **Statistics Cards**: 6 metric cards showing total uploads, pending, processing, completed, failed, and total CSV records
+- **Processing Queue Table**: Lists all user uploads with detailed information
+- **User Information**: Shows which user uploaded each file
+- **Processing Stats**: Displays total/inserted/updated/error counts for each upload
+- **Admin Actions**: View details, reprocess, mark completed, and delete buttons
+- **Status Badges**: Color-coded status indicators (yellow for pending, blue for processing, green for completed, red for failed)
 
-### Profile Settings
-Modern profile management with sections for personal info, password update, and account deletion.
+### Login Page - Authentication
+![Login Page](public/assets/images/Screenshot%202025-11-22%20at%202.32.02%20PM.png)
+
+Clean and modern authentication interface:
+- **Gradient Header**: Purple gradient background with YoPrint logo
+- **Centered Card Design**: Professional card layout with white background
+- **Form Fields**: Email and password inputs with validation
+- **Remember Me**: Checkbox option for persistent login
+- **Password Toggle**: Eye icon to show/hide password
+- **Forgot Password**: Link to password recovery
+- **Registration Link**: Easy access to sign-up page
+
+### Additional Features
+- **Profile Settings**: Modern profile management with sections for personal info, password update, and account deletion
+- **CSV Data Browser**: Admin interface to search and view all imported CSV records
+- **Landing Page**: Hero section with YoPrint branding and call-to-action buttons
 
 
 ## 🤝 Contributing
