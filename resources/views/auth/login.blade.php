@@ -20,7 +20,7 @@
                     <div class="card">
 
                         <!-- Logo -->
-                        <div class="card-header pt-4 pb-4 text-center bg-primary">
+                        <div class="card-header pt-4 pb-4 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <a href="{{ url('/') }}">
                                 <span><img src="{{ asset('assets/images/yo-print.png') }}" alt="YoPrint" height="40"></span>
                             </a>
