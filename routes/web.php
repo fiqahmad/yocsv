@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CsvAdminController;
 use App\Http\Controllers\CsvUploadController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/csv/create', [CsvUploadController::class, 'create'])->name('csv.create');
     Route::post('/csv', [CsvUploadController::class, 'store'])->name('csv.store');
     Route::delete('/csv/{csvUpload}', [CsvUploadController::class, 'destroy'])->name('csv.destroy');
+
+    // Notification Routes
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+    Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.unreadCount');
 
     // Admin Routes - Only accessible by administrators
     Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {

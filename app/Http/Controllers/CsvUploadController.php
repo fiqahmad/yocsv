@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessCsvFile;
 use App\Models\CsvUpload;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 
 class CsvUploadController extends Controller
 {
     public function index(Request $request)
     {
-        $query = CsvUpload::query();
+        $query = CsvUpload::where('user_id', $request->user()->id);
 
         if ($request->has('status')) {
             $query->where('status', $request->status);
@@ -39,9 +40,14 @@ class CsvUploadController extends Controller
             $file->storeAs('csv_uploads', $fileName, 'public');
 
             $csvUpload = CsvUpload::create([
+                'user_id' => $request->user()->id,
                 'file_name' => $fileName,
                 'status' => 'pending',
             ]);
+
+            // Send notifications
+            $notificationService = new NotificationService();
+            $notificationService->csvUploaded($request->user(), $csvUpload->id, $fileName);
 
             ProcessCsvFile::dispatch($csvUpload);
 

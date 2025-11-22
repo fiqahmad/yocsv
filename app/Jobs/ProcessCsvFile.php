@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\CsvUpload;
 use App\Services\CsvParserService;
+use App\Services\NotificationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;
@@ -50,6 +51,22 @@ class ProcessCsvFile implements ShouldQueue
                 'error_messages' => !empty($stats['error_messages']) ? json_encode($stats['error_messages']) : null,
             ]);
 
+            // Send notifications if user exists
+            if ($this->csvUpload->user) {
+                $notificationService = new NotificationService();
+                $notificationService->csvProcessed(
+                    $this->csvUpload->user,
+                    $this->csvUpload->id,
+                    $this->csvUpload->file_name,
+                    [
+                        'total_rows' => $stats['total_rows'],
+                        'inserted_rows' => $stats['inserted'],
+                        'updated_rows' => $stats['updated'],
+                        'error_rows' => $stats['errors'],
+                    ]
+                );
+            }
+
             Log::info("CSV processing completed", [
                 'file' => $this->csvUpload->file_name,
                 'stats' => $stats
@@ -60,6 +77,17 @@ class ProcessCsvFile implements ShouldQueue
                 'status' => 'failed',
                 'error_messages' => json_encode([$e->getMessage()])
             ]);
+
+            // Send failure notifications if user exists
+            if ($this->csvUpload->user) {
+                $notificationService = new NotificationService();
+                $notificationService->csvFailed(
+                    $this->csvUpload->user,
+                    $this->csvUpload->id,
+                    $this->csvUpload->file_name,
+                    $e->getMessage()
+                );
+            }
 
             Log::error("CSV processing failed", [
                 'file' => $this->csvUpload->file_name,
